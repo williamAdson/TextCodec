@@ -4,6 +4,7 @@ root = Tk()
 root.title("Secret Message")
 root.configure(background="#20211A")
 root.geometry("500x500")
+
 # get task
 def get_task():
     task = simpledialog.askstring('Task', 'Do you want to encrypt or decrypt?')
@@ -65,9 +66,13 @@ while True:
         messagebox.showinfo('Cipher text of the secret message is: ', encrypted)
     elif task == 'decrypt':
         message = get_message()
-        plaintext = swap_letters(message)
-        decrypted = remove_last_letter(plaintext)
-        messagebox.showinfo('Plain text of the secret message is: ', decrypted)
+        if is_even(len(message)):
+            decrypted = swap_letters(message)
+            messagebox.showinfo('Plain text of the secret message is: ', decrypted)
+        else:
+            plaintext = swap_letters(message)
+            decrypted = remove_last_letter(plaintext)
+            messagebox.showinfo('Plain text of the secret message is: ', decrypted)
     else:
         break
 
